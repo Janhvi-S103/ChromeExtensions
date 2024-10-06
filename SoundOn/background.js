@@ -7,9 +7,9 @@ let currentSettings = {
 
 const presetSounds = {
     ping: 'ping.mp3',
+    fart: 'fart.mp3',
     ding: 'ding.mp3',
     chime: 'chime.mp3',
-    fart: 'fart.mp3',
 };
 
 function loadSettings() {
