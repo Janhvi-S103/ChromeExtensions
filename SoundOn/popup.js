@@ -75,9 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 // background.js
-
 let currentSettings = {
     selectedSound: 'ping',
     volume: 50
@@ -98,6 +96,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action === 'updateSettings') {
         currentSettings.selectedSound = request.selectedSound;
         currentSettings.volume = request.volume;
+        chrome.storage.sync.set({
+            selectedSound: currentSettings.selectedSound,
+            volume: currentSettings.volume
+        });
     } else if (request.action === 'previewSound') {
         playSound(request.sound, request.volume);
     }
