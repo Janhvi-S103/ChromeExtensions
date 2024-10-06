@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundOn Extension</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Add Sound to Browser</h1>
+    
+    <label for="sound-select">Choose a preset sound:</label>
+    <select id="sound-select">
+        <option value="ping">Ping</option>
+        <option value="ding">Ding</option>
+        <option value="chime">Chime</option>
+        <option value="Fart">Fart</option>
+    </select>
+
+    <label for="custom-sound">Or upload a custom sound (MP3):</label>
+    <input type="file" id="custom-sound" accept=".mp3">
+
+    <label for="volume">Volume:</label>
+    <input type="range" id="volume" min="0" max="100" value="50">
+
+    <button id="save-settings">Save Settings</button>
+
+    <script src="popup.js"></script>
+</body>
+</html>
