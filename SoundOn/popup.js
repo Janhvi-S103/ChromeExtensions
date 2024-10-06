@@ -1,12 +1,5 @@
 // popup.js
 
-const presetSounds = {
-    ping: 'ping.mp3',
-    ding: 'ding.mp3',
-    chime: 'chime.mp3',
-    fart: 'fart.mp3',
-};
-
 document.addEventListener('DOMContentLoaded', function() {
     const soundSelect = document.getElementById('sound-select');
     const customSound = document.getElementById('custom-sound');
@@ -32,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                chrome.storage.local.set({ customSound: e.target.result, customSoundName: file.name });
+                chrome.storage.local.set({ customSound: e.target.result });
+                chrome.storage.sync.set({ customSoundName: file.name });
+                soundSelect.value = 'custom';
             };
             reader.readAsDataURL(file);
             event.target.nextElementSibling.textContent = file.name;
@@ -75,49 +70,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-// background.js
-let currentSettings = {
-    selectedSound: 'ping',
-    volume: 50
-};
-
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.get(['selectedSound', 'volume'], function(result) {
-        if (result.selectedSound) currentSettings.selectedSound = result.selectedSound;
-        if (result.volume) currentSettings.volume = result.volume;
-    });
-});
-
-chrome.tabs.onCreated.addListener(function() {
-    playSound(currentSettings.selectedSound, currentSettings.volume);
-});
-
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.action === 'updateSettings') {
-        currentSettings.selectedSound = request.selectedSound;
-        currentSettings.volume = request.volume;
-        chrome.storage.sync.set({
-            selectedSound: currentSettings.selectedSound,
-            volume: currentSettings.volume
-        });
-    } else if (request.action === 'previewSound') {
-        playSound(request.sound, request.volume);
-    }
-});
-
-function playSound(sound, volume) {
-    let audioSrc = presetSounds[sound];
-    if (!audioSrc) {
-        chrome.storage.local.get(['customSound'], function(result) {
-            if (result.customSound) {
-                const audio = new Audio(result.customSound);
-                audio.volume = volume / 100;
-                audio.play();
-            }
-        });
-    } else {
-        const audio = new Audio(audioSrc);
-        audio.volume = volume / 100;
-        audio.play();
-    }
-}
