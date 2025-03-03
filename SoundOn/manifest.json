@@ -2,7 +2,7 @@
     "name": "SoundnOn",
     "version": "1.0",
     "description": "SoundnOn is a simple extension that plays a sound when you open a new page or tab in the browser.",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "permissions": [
       "storage",
       "tabs",
