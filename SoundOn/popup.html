@@ -1,30 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundOn Extension</title>
+    <title>Sound On</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>Add Sound to Browser</h1>
-    
-    <label for="sound-select">Choose a preset sound:</label>
-    <select id="sound-select">
-        <option value="ping">Ping</option>
-        <option value="ding">Ding</option>
-        <option value="chime">Chime</option>
-        <option value="fart">Fart</option>
-    </select>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M19.07 4.93C20.9447 6.80527 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07M15.54 8.46C16.4774 9.39763 17.0039 10.6692 17.0039 12C17.0039 13.3308 16.4774 14.6024 15.54 15.54"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <h1>Sound On</h1>
+            </div>
+            <div class="badge">v2.0</div>
+        </header>
 
-    <label for="custom-sound">Or upload a custom sound (MP3):</label>
-    <input type="file" id="custom-sound" accept=".mp3">
+        <main>
+            <div class="control-group">
+                <label for="sound-select">Sound Effect</label>
+                <div class="select-wrapper">
+                    <select id="sound-select">
+                        <option value="ping">Ping</option>
+                        <option value="ding">Ding</option>
+                        <option value="chime">Chime</option>
+                        <option value="fart">Fart</option>
+                    </select>
+                </div>
+            </div>
 
-    <label for="volume">Volume:</label>
-    <input type="range" id="volume" min="0" max="100" value="50">
+            <div class="control-group">
+                <div class="range-header">
+                    <label for="volume">Volume</label>
+                    <span id="volume-value">50%</span>
+                </div>
+                <input type="range" id="volume" min="0" max="100" value="50">
+            </div>
 
-    <button id="save-settings">Save Settings</button>
+            <button id="save-settings">Save Changes</button>
 
+            <div id="debug-info" style="display: none;"></div>
+        </main>
+    </div>
     <script src="popup.js"></script>
 </body>
+
 </html>

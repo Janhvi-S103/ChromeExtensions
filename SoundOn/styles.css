@@ -1,97 +1,177 @@
 /* styles.css */
+:root {
+    --bg-color: #0f1115;
+    --card-bg: #1c1f26;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border: #2d313b;
+    --radius: 12px;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    width: 300px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    width: 320px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+.container {
     padding: 20px;
-    background-color: #f0f0f0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
 }
 
 h1 {
     font-size: 18px;
-    color: #333;
-    margin-bottom: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.control-group {
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-top: 15px;
-    font-weight: bold;
-    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
 }
 
-select, input[type="file"], input[type="range"] {
-    width: 100%;
-    margin-top: 5px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+.select-wrapper {
+    position: relative;
 }
 
 select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
     appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    background-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-input[type="file"] {
-    padding: 10px 8px;
+select:hover,
+select:focus {
+    border-color: var(--primary);
+}
+
+.select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 6px;
+    background-image: url('data:image/svg+xml;utf8,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%239CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+
+
+.range-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+#volume-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
 }
 
 input[type="range"] {
     -webkit-appearance: none;
-    height: 8px;
-    background: #d3d3d3;
+    width: 100%;
+    height: 6px;
+    background: var(--card-bg);
+    border-radius: 999px;
     outline: none;
-    opacity: 0.7;
-    transition: opacity .2s;
-}
-
-input[type="range"]:hover {
-    opacity: 1;
 }
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #4CAF50;
-    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
     border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
 }
 
-input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #4CAF50;
-    cursor: pointer;
-    border-radius: 50%;
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #4CAF50;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
     color: white;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: var(--radius);
+    font-weight: 600;
     font-size: 14px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-#sound-select {
-    margin-bottom: 15px;
+button:active {
+    transform: translateY(0);
 }
 
-#custom-sound {
-    margin-bottom: 15px;
+#debug-info {
+    margin-top: 20px;
+    padding: 10px;
+    background: var(--card-bg);
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: monospace;
+    color: var(--text-muted);
+    max-height: 100px;
+    overflow-y: auto;
 }
