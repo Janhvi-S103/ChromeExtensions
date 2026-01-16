@@ -6,21 +6,23 @@
   "permissions": [
     "storage",
     "tabs",
-    "contextMenus",
-    "notifications",
     "offscreen"
   ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
+  "host_permissions": [],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
-  "web_accessible_resources": [{
-    "resources": ["*.mp3"],
-    "matches": ["<all_urls>"]
-  }],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "*.mp3"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
