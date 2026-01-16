@@ -1,6 +1,6 @@
 {
   "name": "Sound On",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Sound On is a simple extension that plays a sound when you open a new page or tab in the browser.",
   "manifest_version": 3,
   "permissions": [
